@@ -1,0 +1,188 @@
+  <!DOCTYPE html>
+  <html>
+
+  <head>
+      <title>Simple Calculator</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css">
+
+      <style>
+          body {
+              font-family: "Slabo, Cambria, Georgia";
+              color: rgba(0, 0, 0, 0.5);
+              background-color: lightgray;
+          }
+
+          #container {
+              margin-top: 60px;
+              margin-left: 60px;
+              width: 600px;
+              border: 15px solid green 15px;
+          }
+
+          * {
+              font-size: 20px;
+          }
+
+          .section {
+              margin-left: 60px;
+              margin-top: 60px;
+          }
+
+          div.col-sm-3 {
+              margin-top: 20px;
+              max-width: 16%;
+          }
+
+          .row .col-sm-3:first-child {
+              margin-left: 110px;
+          }
+
+
+          #Input_1,
+          #Input_2 {
+              width: 400px;
+              margin-top: 20px;
+          }
+
+          .section_2 {
+              margin-left: 60px;
+          }
+
+          #Input1,
+          #Input2,
+          #addition,
+          #subtract,
+          #multiply,
+          #division {
+              text-align: center;
+          }
+
+          #addition,
+          #subtract,
+          #division,
+          #multiply {
+              width: 60px;
+          }
+
+          p {
+              margin-top: 30px;
+              text-align: center;
+              font-size: 30px;
+              padding-bottom: 30px;
+          }
+
+          #result {
+              font-size: 30px;
+          }
+
+          h1 {
+              margin-top: 50px;
+              text-align: center;
+          }
+
+          .row {
+              margin-top: 20px;
+              text-align: center;
+          }
+
+          /* .button {
+            background-color:turquoise;
+          } */
+
+        input[type=button] {
+            background-color:turquoise;
+        }
+
+      </style>
+  </head>
+
+  <body>
+      <div id="container" class="border border-dark">
+
+          <h1> Simple Calculator </h1>
+
+          <div class="row">
+              <div class="col-sm-12">
+                  <input type="text" id="Input_1" placeholder="Input number here...">
+              </div>
+              <div class="col-sm-12">
+                  <input type="text" id="Input_2" placeholder="Input number here...">
+              </div>
+          </div>
+          <div class="row">
+              <div class="col-sm-3">
+                  <input type="button" id="addition" onClick="addBy()" Value="+" />
+              </div>
+              <div class="col-sm-3">
+                  <input type="button" id="subtract" onClick="subtractBy()"
+                      Value="-" />
+              </div>
+              <div class="col-sm-3">
+                  <input type="button" id="multiply" onClick="multiplyBy()"
+                      Value="*" />
+              </div>
+              <div class="col-sm-3">
+                  <input type="button" id="division" onClick="divideBy()"
+                      Value="/" />
+              </div>
+          </div>
+          <div class="row">
+              <div class="col-sm-12">
+                  <p>The result is:
+                      <span id="result">0</span>
+                  </p>
+              </div>
+          </div>
+
+      </div>
+
+      <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+          integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+      </script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+          integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
+      </script>
+      <script type="text/javascript">
+          function addBy() {
+              var num1 = document.getElementById("Input_1").value;
+              var num2 = document.getElementById("Input_2").value;
+              document.getElementById("result").innerHTML = parseFloat(num1) + parseFloat(num2);
+              clearVals();
+          }
+
+          function subtractBy() {
+              var num1 = document.getElementById("Input_1").value;
+              var num2 = document.getElementById("Input_2").value;
+              document.getElementById("result").innerHTML = parseFloat(num1) - parseFloat(num2);
+              clearVals();
+          }
+
+          function multiplyBy() {
+              var num1 = document.getElementById("Input_1").value;
+              var num2 = document.getElementById("Input_2").value;
+              document.getElementById("result").innerHTML = parseFloat(num1) * parseFloat(num2);
+              clearVals();
+          }
+
+          function divideBy() {
+              var num1 = document.getElementById("Input_1").value;
+              var num2 = document.getElementById("Input_2").value;
+              document.getElementById("result").innerHTML = parseFloat(num1) / parseFloat(num2);
+              clearVals();
+          }
+
+          function clearVals() {
+              document.getElementById("Input_1").value = null;
+              document.getElementById("Input_2").value = null;
+          }
+      </script>
+  </body>
+
+
+  </html>
