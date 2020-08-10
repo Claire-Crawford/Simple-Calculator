@@ -1,6 +1,11 @@
-import { fireEvent, getByText } from '@testing-library/dom';
+import {
+  fireEvent,
+  getByText
+} from '@testing-library/dom';
 import '@testing-library/jest-dom/extend-expect';
-import { JSDOM } from 'jsdom';
+import {
+  JSDOM
+} from 'jsdom';
 import fs from 'fs';
 import path from 'path';
 
@@ -15,34 +20,72 @@ describe('calculator functionality', () => {
     // to getting the code in the script tag to execute.
     // This is indeed dangerous and should only be done with trusted content.
     // https://github.com/jsdom/jsdom#executing-scripts
-    dom = new JSDOM(html, { runScripts: 'dangerously' });
+    dom = new JSDOM(html, {
+      runScripts: 'dangerously'
+    });
     container = dom.window.document.body;
   })
 
   test('has an add button', () => {
-    expect(container.querySelector('.btn-plus')).not.toBeNull();
+    expect(container.querySelector('#addition')).not.toBeNull();
     expect(getByText(container, '+')).toBeInTheDocument();
   })
 
   test('has a subtract button', () => {
-    expect(container.querySelector('.btn-subtract')).not.toBeNull();
+    expect(container.querySelector('#subtract')).not.toBeNull();
     expect(getByText(container, '-')).toBeInTheDocument();
   })
 
   test('can add two numbers', () => {
+    let testList = [{
+      "imp1": 5,
+      "imp2": 3,
+      "answer": 8
+    }, {
+      "imp1": 2,
+      "imp2": 3,
+      "answer": 5
+    }, {
+      "imp1": 5,
+      "imp2": -5,
+      "answer": 0
+    }, {
+      "imp1": 9,
+      "imp2": 11,
+      "answer": 20
+    }, {
+      "imp1": 3,
+      "imp2": 7,
+      "answer": 10
+    }, {
+      "imp1": 8,
+      "imp2": 4,
+      "answer": 12
+    }];
 
     let number1 = container.querySelector("#Input_1");
     let number2 = container.querySelector("#Input_2");
-
-    fireEvent.change(number1, {target: { value: 5 } });
-    fireEvent.change(number2, {target: { value: 3 } });
-
     const button = getByText(container, '+');
-    fireEvent.click(button);
+    let id = 0;
+    for (id = 0; id < 6; id++) {
 
-    let result = container.querySelector("#result");
-    expect(parseFloat(result.innerHTML)).toBe(8);
-  })
+      fireEvent.change(number1, {
+        target: {
+          value: testList[id].imp1
+        }
+      });
+      fireEvent.change(number2, {
+        target: {
+          value: testList[id].imp2
+        }
+      });
+
+      fireEvent.click(button);
+
+      let result = container.querySelector("#result");
+      expect(parseFloat(result.innerHTML)).toBe(testList[id].answer);
+    }
+  });
 
 
   test('can subtract two numbers', () => {
@@ -50,10 +93,18 @@ describe('calculator functionality', () => {
     let number1 = container.querySelector("#Input_1");
     let number2 = container.querySelector("#Input_2");
 
-    fireEvent.change(number1, {target: { value: 5 } });
-    fireEvent.change(number2, {target: { value: 3 } });
+    fireEvent.change(number1, {
+      target: {
+        value: 5
+      }
+    });
+    fireEvent.change(number2, {
+      target: {
+        value: 3
+      }
+    });
 
-    const button = getByText(container, '+');
+    const button = getByText(container, '-');
     fireEvent.click(button);
 
     let result = container.querySelector("#result");
@@ -65,11 +116,19 @@ describe('calculator functionality', () => {
 
     let number1 = container.querySelector("#Input_1");
     let number2 = container.querySelector("#Input_2");
+    const button = getByText(container, '*');
 
-    fireEvent.change(number1, {target: { value: 5 } });
-    fireEvent.change(number2, {target: { value: 3 } });
+    fireEvent.change(number1, {
+      target: {
+        value: 5
+      }
+    });
+    fireEvent.change(number2, {
+      target: {
+        value: 3
+      }
+    });
 
-    const button = getByText(container, '+');
     fireEvent.click(button);
 
     let result = container.querySelector("#result");
@@ -82,15 +141,24 @@ describe('calculator functionality', () => {
     let number1 = container.querySelector("#Input_1");
     let number2 = container.querySelector("#Input_2");
 
-    fireEvent.change(number1, {target: { value: 6 } });
-    fireEvent.change(number2, {target: { value: 3 } });
+    fireEvent.change(number1, {
+      target: {
+        value: 6
+      }
+    });
+    fireEvent.change(number2, {
+      target: {
+        value: 3
+      }
+    });
 
-    const button = getByText(container, '+');
+    const button = getByText(container, '/');
     fireEvent.click(button);
 
     let result = container.querySelector("#result");
     expect(parseFloat(result.innerHTML)).toBe(2);
   })
+
 
 
 })
